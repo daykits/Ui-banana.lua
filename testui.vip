@@ -1,0 +1,68 @@
+-- MENU MẪU - thay API cho khớp với UI BananaHub của bạn
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/daykits/Ui-banana.lua/refs/heads/main/ui%20BananaHub.lua.txt"))()
+
+local Window = Library:CreateWindow({
+    Title = "Banana Hub",
+    Desc = "BYDAT",
+    Image = "rbxassetid://105245380363493"
+})
+
+-- ================== TAB MAIN ==================
+local MainTab = Window:AddTab("Main", "rbxassetid://10734950309")
+local MainSec = MainTab:AddSection("General")
+
+MainSec:AddButton({
+    Title = "Hello World",
+    Desc = "In ra console",
+    Callback = function()
+        print("Hello from Banana Hub!")
+    end
+})
+
+MainSec:AddToggle("autoFarm", {
+    Title = "Auto Farm",
+    Desc = "Tự động farm",
+    Default = false,
+    Callback = function(state)
+        print("AutoFarm:", state)
+        -- logic farm ở đây
+    end
+})
+
+MainSec:AddSlider({
+    Title = "Walk Speed",
+    Min = 16, Max = 200, Default = 16,
+    Callback = function(v)
+        local char = game.Players.LocalPlayer.Character
+        if char and char:FindFirstChildOfClass("Humanoid") then
+            char:FindFirstChildOfClass("Humanoid").WalkSpeed = v
+        end
+    end
+})
+
+-- ================== TAB SETTINGS ==================
+local SetTab = Window:AddTab("Settings", "rbxassetid://10734898355")
+local SetSec = SetTab:AddSection("Options")
+
+SetSec:AddDropdown("theme", {
+    Title = "Chọn chế độ",
+    Values = {"Normal", "Fast", "Slow"},
+    Default = "Normal",
+    Callback = function(v) print("Mode:", v) end
+})
+
+SetSec:AddKeyBind({
+    Title = "Bật/Tắt Menu",
+    Default = "RightShift",
+    Mode = "Toggle",
+    Callback = function(state)
+        print("Menu key:", state)
+    end
+})
+
+-- ================== THÔNG BÁO ==================
+Library:Notify({
+    Title = "Banana Hub",
+    Description = "Đã load thành công!",
+    Duration = 5
+})
