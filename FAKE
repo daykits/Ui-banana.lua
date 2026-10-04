@@ -5,6 +5,10 @@ repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
 -------------------------------------------------
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/daykits/Ui-banana.lua/refs/heads/main/ui%20BananaHub.lua.txt"))()
 
+-- FIX: Đảm bảo GUI được phép load
+getgenv().ReadyForGuiLoaded = true
+getgenv().UIToggled = true
+
 local Window = Library:CreateWindow({
     Title = "Datkits Premium",
     Subtitle = "Blox Fruits • Fast Attack Redz Style • Sea 1+2",
@@ -501,7 +505,38 @@ Tabs.Settings:AddButton({
     end
 })
 
-Window:SelectTab(1)
+-------------------------------------------------
+-- FIX: HIEN TAT CA SECTION/ELEMENT (BananaHub bug)
+-------------------------------------------------
+task.spawn(function()
+    task.wait(1.5)
+    pcall(function()
+        -- Bật lại tất cả control trong AllControls
+        for _, control in pairs(getgenv().AllControls or {}) do
+            if control.Element then control.Element.Visible = true end
+            if control.Section then control.Section.Visible = true end
+            if control.TabButton then control.TabButton.Visible = true end
+        end
+
+        -- Bật hết con trong PageList
+        local gui = game.CoreGui:FindFirstChild("Night Mystic GUI")
+        if gui then
+            for _, desc in ipairs(gui:GetDescendants()) do
+                if desc.Name == "PageList" then
+                    for _, child in ipairs(desc:GetChildren()) do
+                        if not child:IsA("UIListLayout") then
+                            child.Visible = true
+                        end
+                    end
+                end
+                -- Xóa text trong SearchBox để không auto-filter
+                if desc:IsA("TextBox") and (desc.Name == "Search Box" or desc.Name == "SearchBox") then
+                    desc.Text = ""
+                end
+            end
+        end
+    end)
+end)
 
 Library:Notify({
     Title = "Datkits Premium",
