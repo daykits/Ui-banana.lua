@@ -1,9 +1,9 @@
 -- source shared by Obii 
 
 if getgenv().Nousigi then 
-	if game.CoreGui:FindFirstChild("Night Mystic GUI") then
+	if game.CoreGui:FindFirstChild("Datkits hub GUI") then
 		for i, v in ipairs(game.CoreGui:GetChildren()) do
-			if string.find(v.Name,  "Night Mystic") then
+			if string.find(v.Name,  "Datkis hub") then
 				v:Destroy()
 			end
 		end
@@ -108,7 +108,7 @@ end
 
 Library_Function.Gui = Instance.new('ScreenGui')
 Library_Function.Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Library_Function.Gui.Name = 'Night Mystic GUI'
+Library_Function.Gui.Name = 'Datkits hub GUI'
 Library_Function.Gui.Enabled = false
 
 getgenv().ReadyForGuiLoaded = false
@@ -124,11 +124,11 @@ end)
 
 Library_Function.NotiGui = Instance.new('ScreenGui')
 Library_Function.NotiGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Library_Function.NotiGui.Name = 'Night Mystic Notification'
+Library_Function.NotiGui.Name = 'datkits Notification'
 
 Library_Function.HideGui = Instance.new('ScreenGui')
 Library_Function.HideGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Library_Function.HideGui.Name = 'Night Mystic'
+Library_Function.HideGui.Name = 'Datkis hub'
 
 
 local Players = game:GetService("Players")
