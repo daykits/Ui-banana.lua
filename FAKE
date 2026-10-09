@@ -3,7 +3,7 @@ repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
 -------------------------------------------------
 -- LOAD BANANAHUB UI
 -------------------------------------------------
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/daykits/Ui-banana.lua/refs/heads/main/ui%20BananaHub.lua.txt"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/daykits/Ui-banana.lua/refs/heads/main/RONG_UI01"))()
 
 -- FIX: Đảm bảo GUI được phép load
 getgenv().ReadyForGuiLoaded = true
